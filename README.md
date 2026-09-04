@@ -46,12 +46,12 @@ Demo project oleh **[iambrilian](https://github.com/brilianrn)**
 
 ### Footer
 
-Peta tool per kategori, catatan privasi, dan tanda tangan penulis yang menautkan
-ke [iambrilian.vercel.app](https://iambrilian.vercel.app).
+Gradien indigo gelap dengan motif grid yang di-mask radial, kontras penuh terhadap
+area kerja di atasnya dan sama di kedua tema. Berisi peta tool per kategori, catatan
+privasi, dan tanda tangan penulis yang menautkan ke
+[iambrilian.vercel.app](https://iambrilian.vercel.app).
 
-<img src="docs/preview/footer-light.jpg" alt="Footer pada tema terang: empat kolom daftar tool, catatan privasi, dan pill Dibuat oleh iambrilian di kanan">
-
-<img src="docs/preview/footer-dark.jpg" alt="Footer yang sama pada tema gelap">
+<img src="docs/preview/footer.jpg" alt="Footer bergradien indigo gelap dengan motif grid: empat kolom daftar tool, catatan privasi, dan pill Dibuat oleh iambrilian di kanan">
 
 ---
 
@@ -202,9 +202,14 @@ atau log yang memuat data pelanggan.
 
 ## Catatan deployment
 
-Tag `canonical`, `og:url`, dan `sitemap.xml` masih menunjuk ke domain sementara.
-Ganti ke domain final sebelum situs dipublikasikan — cari-ganti satu string di
-seluruh berkas. Detailnya ada di CATATAN-DEMO.md bagian 4.
+Live di **<https://demo-devtools-iambrilian.vercel.app>**. Tag `canonical`,
+`og:url`, `og:image`, JSON-LD, dan `sitemap.xml` seluruhnya menunjuk ke domain itu.
+
+Deployment ini sengaja **ditutup dari mesin pencari**: setiap halaman memuat
+`<meta name="robots" content="noindex, nofollow">` dan `robots.txt` berisi
+`Disallow: /`. Ini khusus untuk demo agar tidak terindeks atas nama klien.
+Dua hal itu wajib dicabut saat situs benar-benar dirilis; seluruh markup SEO
+lainnya sudah siap dan tidak perlu diubah.
 
 Pada hosting produksi, routing akan dipindahkan ke PHP sesuai permintaan klien.
 Sifat multi-halaman tetap dipertahankan: PHP hanya merakit HTML di sisi server,

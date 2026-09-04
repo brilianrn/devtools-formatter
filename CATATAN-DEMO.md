@@ -195,9 +195,21 @@ Rencana pemindahannya:
 
 ## 4. Hal teknis yang perlu diketahui
 
-- **Domain canonical.** Semua tag `canonical`, `og:url`, dan `sitemap.xml` saat ini
-  menunjuk ke `https://devtools-formatter.vercel.app`. Ganti ke domain final
-  sebelum situs dipublikasikan — cari-ganti satu string di seluruh berkas.
+- **Domain canonical.** Semua tag `canonical`, `og:url`, `og:image`, JSON-LD, dan
+  `sitemap.xml` menunjuk ke `https://demo-devtools-iambrilian.vercel.app`, yaitu
+  domain yang benar-benar live. Kalau nanti pindah ke domain final, cari-ganti satu
+  string di seluruh berkas.
+- **Demo ini ditutup dari mesin pencari.** Setiap halaman memuat
+  `<meta name="robots" content="noindex, nofollow">` dan `robots.txt` berisi
+  `Disallow: /`, supaya demo tidak terindeks atas nama klien. Keduanya wajib
+  dicabut saat rilis produksi. Perlu diketahui dua konsekuensinya selama demo:
+  crawler yang mematuhi `robots.txt` — termasuk crawler Facebook — tidak akan
+  mengambil `og:image`, jadi preview tautan di sebagian aplikasi chat bisa tampil
+  tanpa gambar; dan karena halaman tidak boleh di-crawl, Google tidak pernah
+  membaca tag `noindex` itu sendiri. Kalau tujuannya benar-benar menjamin tidak
+  terindeks sekaligus preview tautan tetap muncul, `noindex` saja sudah cukup dan
+  `robots.txt` dibiarkan terbuka. `sitemap.xml` tetap disimpan di repo sebagai
+  bagian dari deliverable, hanya tidak lagi diacu dari `robots.txt`.
 - **Pustaka CDN.** CodeMirror 5.65.16 (editor + syntax highlighting) dan
   sql-formatter 15.8.2 dimuat dari cdnjs. Tailwind memakai Play CDN, cukup untuk
   demo; untuk produksi sebaiknya diganti CSS hasil build agar tidak bergantung

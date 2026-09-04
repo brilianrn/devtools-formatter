@@ -271,13 +271,73 @@ a.tool-card-link:hover { border-color: var(--accent); transform: translateY(-2px
 .dark .badge-live { color: #34d399; }
 .badge-soon-lg { color: var(--muted); background: rgba(100,116,139,.14); }
 
-.site-footer h3 { font-size: .78rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
-.site-footer ul { margin-top: .7rem; display: grid; gap: .4rem; }
+.site-foot {
+  position: relative;
+  overflow: hidden;
+  margin-top: 4rem;
+  background: linear-gradient(180deg, #312e81 0%, #1e1b4b 52%, #0b1020 100%);
+  color: #e2e8f0;
+  isolation: isolate;
+}
+.site-foot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: .22;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.15) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse at top, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse at top, #000 30%, transparent 80%);
+}
+.site-foot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 130% at 50% -25%, rgba(129,140,248,.30), transparent 68%),
+    radial-gradient(38% 90% at 88% 8%, rgba(56,189,248,.14), transparent 70%);
+}
+.site-foot__inner { position: relative; }
+
+.site-footer h3 {
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+.site-footer ul { margin-top: .85rem; display: grid; gap: .45rem; }
 .site-footer li { font-size: .85rem; }
-.site-footer a { color: #475569; }
-.dark .site-footer a { color: #cbd5e1; }
-.site-footer a:hover { color: var(--accent); }
-.site-footer span { color: var(--muted); opacity: .65; }
+.site-footer a { color: rgba(255,255,255,.84); transition: color .15s ease; }
+.site-footer a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.site-footer span { color: rgba(255,255,255,.36); }
+
+.footer-bottom {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: .9rem 1.5rem; margin-top: 3rem; padding-top: 1.75rem;
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+.footer-bottom > p { font-size: .75rem; color: rgba(255,255,255,.55); max-width: 62ch; line-height: 1.65; }
+.footer-sign {
+  display: inline-flex; align-items: center; gap: .55rem; flex-shrink: 0;
+  padding: .4rem .85rem .4rem .5rem; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.72); font-size: .8rem; line-height: 1;
+  backdrop-filter: blur(6px);
+  transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
+}
+.footer-sign img { height: 1.375rem; width: 1.375rem; object-fit: contain; border-radius: .4rem; }
+.footer-sign strong { color: #fff; font-weight: 650; }
+.footer-sign:hover {
+  background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.45);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
 
 @media (max-width: 1023px) {
   #sidebar.is-open {
@@ -296,24 +356,3 @@ a.tool-card-link:hover { border-color: var(--accent); transform: translateY(-2px
 .brand-mark {
   height: 2.375rem; width: 2.375rem; object-fit: contain; flex-shrink: 0;
 }
-
-.footer-bottom {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: .9rem 1.5rem; margin-top: 2.5rem; padding-top: 1.5rem;
-  border-top: 1px solid var(--panel-border);
-}
-.footer-bottom > p { font-size: .75rem; color: var(--muted); max-width: 62ch; line-height: 1.6; }
-.footer-sign {
-  display: inline-flex; align-items: center; gap: .55rem; flex-shrink: 0;
-  padding: .4rem .75rem .4rem .5rem; border-radius: 999px;
-  border: 1px solid var(--panel-border); background: var(--panel);
-  font-size: .8rem; color: var(--muted); line-height: 1;
-  transition: border-color .18s ease, color .18s ease, transform .18s ease;
-}
-.footer-sign img { height: 1.375rem; width: 1.375rem; object-fit: contain; }
-.footer-sign strong { color: #334155; font-weight: 650; }
-.dark .footer-sign strong { color: #e2e8f0; }
-.footer-sign:hover {
-  border-color: var(--accent); color: var(--accent); transform: translateY(-1px);
-}
-.footer-sign:hover strong { color: var(--accent); }
