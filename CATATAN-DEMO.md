@@ -1,10 +1,12 @@
-# Catatan Demo — DevTools iambrilian Studio
+# Catatan Teknis — DevTools iambrilian Studio
 
-Demo tool converter/formatter untuk presentasi ke calon klien. Referensi fungsional
-FreeFormatter.com (sudah tutup), tapi tampilan sengaja dibuat berbeda dan modern.
+Dokumen ini memuat rencana produk, dasar keputusan arsitektur, dan catatan
+migrasi ke hosting produksi. Referensi fungsionalnya FreeFormatter.com yang
+sudah tutup, dengan tampilan dan alur kerja yang dirancang ulang.
 
-Empat tool sudah jalan penuh. Tiga puluh delapan sisanya ditampilkan sebagai
-*coming soon* supaya klien melihat rencana lengkapnya sejak demo pertama.
+Empat tool sudah berjalan penuh. Tiga puluh delapan sisanya sudah terpetakan dan
+ditampilkan sebagai *coming soon* di homepage, sehingga cakupan akhir produk
+terlihat sejak rilis pertama.
 
 ---
 
@@ -143,20 +145,20 @@ dan kepatuhan kebijakan — hal-hal yang di luar kendali arsitektur.
 
 ### Cara memasang AdSense nanti
 
-Setiap slot ditandai blok komentar HTML yang berdiri sendiri, contohnya:
+Setiap slot adalah satu elemen mandiri yang ditandai atribut data, tanpa
+komentar apa pun di dalam kode:
 
 ```html
-<!-- ==== AD SLOT: LEADERBOARD (728x90) ====
-     Ganti seluruh isi div.ad-slot di bawah dengan snippet AdSense. -->
-<div class="ad-slot ad-leaderboard" data-ad-slot="leaderboard" aria-hidden="true">
+<div class="ad-slot ad-leaderboard" data-ad-slot="leaderboard" data-ad-size="728x90" aria-hidden="true">
   <span class="ad-slot__label">Ad Slot · Leaderboard</span>
   <span class="ad-slot__size">728 × 90</span>
 </div>
-<!-- ==== /AD SLOT: LEADERBOARD ==== -->
 ```
 
-Langkahnya: ganti isi `<div class="ad-slot ...">` dengan `<ins class="adsbygoogle">`
-milik klien, lalu muat `adsbygoogle.js` sekali di `<head>`. Kelas `.ad-slot` boleh
+Atribut `data-ad-slot` menyebut posisinya dan `data-ad-size` menyebut ukurannya,
+sehingga slot bisa ditemukan lewat pencarian maupun `querySelectorAll`. Langkahnya:
+ganti kedua `<span>` di dalam `div.ad-slot` dengan `<ins class="adsbygoogle">` milik
+klien, lalu muat `adsbygoogle.js` sekali di `<head>`. Kelas `.ad-slot` boleh
 dipertahankan supaya tinggi minimum slot tetap terkunci dan tidak terjadi layout
 shift saat iklan datang — ini ikut menjaga skor CLS.
 
@@ -212,3 +214,7 @@ Rencana pemindahannya:
 - **Aksesibilitas.** Skip link, `aria-live` pada bilah status, fokus terlihat, dan
   kontras teks memenuhi WCAG AA. Slot iklan diberi `aria-hidden` supaya tidak
   mengganggu pembaca layar.
+
+---
+
+Disusun oleh [iambrilian](https://github.com/brilianrn).

@@ -37,9 +37,7 @@
         lineWrapping: true,
         readOnly: !!opts.readOnly,
         viewportMargin: 30,
-        matchBrackets: true,
-        tabSize: 2,
-        inputStyle: 'contenteditable'
+        tabSize: 2
       });
       editors.push(cm);
       return cm;
