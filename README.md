@@ -15,7 +15,34 @@ Situs multi-halaman statis. HTML + vanilla JavaScript. Tanpa framework, tanpa bu
 
 Demo project oleh **[iambrilian](https://github.com/brilianrn)**
 
+<br>
+
+<img src="docs/preview/home.jpg" alt="Homepage DevTools iambrilian Studio: hero, pencarian tool, dan grid kategori dengan badge Live dan Coming soon" width="900">
+
 </div>
+
+---
+
+## Pratinjau
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/preview/json-formatter.jpg" alt="JSON Formatter menampilkan pesan error yang menyebut baris, kolom, dan penyebabnya"></td>
+    <td width="50%"><img src="docs/preview/sql-formatter-dark.jpg" alt="SQL Formatter dalam dark mode dengan query sebelum dan sesudah diformat"></td>
+  </tr>
+  <tr>
+    <td><b>JSON Formatter</b><br>Error menyebut baris, kolom, dan sebabnya, lalu menyorot baris yang salah di editor.</td>
+    <td><b>SQL Formatter</b><br>Dua belas dialek, tiga gaya penulisan keyword, dan dark mode yang tersimpan.</td>
+  </tr>
+  <tr>
+    <td><img src="docs/preview/json-to-xml.jpg" alt="Konverter JSON ke XML dengan atribut, elemen berulang, dan nilai null"></td>
+    <td><img src="docs/preview/responsive.jpg" alt="Tampilan pada layar sempit dengan panel input dan output yang menumpuk"></td>
+  </tr>
+  <tr>
+    <td><b>JSON to XML</b><br>Atribut, elemen berulang, dan <code>xsi:nil</code>, diverifikasi ulang dengan DOMParser.</td>
+    <td><b>Responsif</b><br>Panel menumpuk di layar sempit; toolbar dan sidebar ikut menyesuaikan.</td>
+  </tr>
+</table>
 
 ---
 
@@ -86,6 +113,7 @@ ulang dokumen. Pembahasan lengkapnya ada di CATATAN-DEMO.md bagian 2.
 │   ├── app.js               tema, editor, clipboard, unduh, unggah, locator JSON
 │   ├── style.css            seluruh gaya kustom di luar Tailwind
 │   └── logo.png · logo-192.png · logo-512.png
+├── docs/preview/            tangkapan layar untuk dokumentasi
 ├── apple-touch-icon.png
 ├── favicon-32.png
 ├── robots.txt
