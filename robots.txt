@@ -1,8 +1,2 @@
 User-agent: *
-Allow: /
-Disallow: /assets/
-
-User-agent: Mediapartners-Google
-Allow: /
-
-Sitemap: https://demo-devtools-iambrilian.vercel.app/sitemap.xml
+Disallow: /
