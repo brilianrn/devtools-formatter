@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DevTools iambrilian Studio &mdash; Formatter, Validator &amp; Converter Online untuk Developer</title>
+  <meta name="description" content="Kumpulan 42 tool formatter, validator, dan converter untuk developer: JSON, XML, SQL, Base64, CSV, YAML, hash, dan regex. Semua diproses di browser, tanpa upload.">
+  <link rel="canonical" href="https://devtools-formatter.vercel.app/index.html">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DevTools iambrilian Studio">
+  <meta property="og:title" content="DevTools iambrilian Studio &mdash; Formatter, Validator &amp; Converter Online untuk Developer">
+  <meta property="og:description" content="Kumpulan 42 tool formatter, validator, dan converter untuk developer: JSON, XML, SQL, Base64, CSV, YAML, hash, dan regex. Semua diproses di browser, tanpa upload.">
+  <meta property="og:url" content="https://devtools-formatter.vercel.app/index.html">
+  <meta property="og:image" content="https://devtools-formatter.vercel.app/assets/logo-512.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://devtools-formatter.vercel.app/assets/logo-512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>(function(){try{var t=localStorage.getItem('dt-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}})();</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','ui-sans-serif','system-ui','-apple-system','Segoe UI','sans-serif'],mono:['JetBrains Mono','ui-monospace','SFMono-Regular','Menlo','monospace']}}}};</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "DevTools iambrilian Studio",
+      "url": "https://devtools-formatter.vercel.app/",
+      "description": "Kumpulan tool formatter, validator, dan converter untuk developer yang berjalan sepenuhnya di browser."
+    },
+    {
+      "@type": "ItemList",
+      "name": "Tool yang tersedia",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JSON Formatter &amp; Validator",
+          "url": "https://devtools-formatter.vercel.app/json-formatter.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "JSON to XML",
+          "url": "https://devtools-formatter.vercel.app/json-to-xml.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "SQL Formatter",
+          "url": "https://devtools-formatter.vercel.app/sql-formatter.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Base64 Encoder / Decoder",
+          "url": "https://devtools-formatter.vercel.app/base64-encoder.html"
+        }
+      ]
+    }
+  ]
+}</script>
+  <script defer src="/assets/app.js"></script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 font-sans antialiased">
+  <a href="#main" class="skip-link">Lewati ke konten</a>
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 h-16 flex items-center gap-3">
+      <button id="navToggle" type="button" class="icon-btn lg:hidden" aria-label="Buka daftar tool" aria-expanded="false" aria-controls="sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <a href="/index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="/assets/logo.png" alt="Logo DevTools iambrilian Studio" width="34" height="34" class="brand-mark">
+        <span class="font-semibold tracking-tight text-[15px] whitespace-nowrap">DevTools <span class="text-indigo-600 dark:text-indigo-400">iambrilian</span> Studio</span>
+      </a>
+      <nav class="ml-auto hidden md:flex items-center gap-1 text-sm" aria-label="Navigasi utama">
+        <a class="top-link" href="/json-formatter.html">JSON</a>
+        <a class="top-link" href="/sql-formatter.html">SQL</a>
+        <a class="top-link" href="/base64-encoder.html">Base64</a>
+        <a class="top-link" href="/json-to-xml.html">Converter</a>
+      </nav>
+      <button id="themeToggle" type="button" class="icon-btn md:ml-2 ml-auto md:ml-2" aria-label="Ganti tema terang / gelap">
+        <svg class="dark:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="hidden dark:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mx-auto max-w-[1440px] px-4 sm:px-6 pt-5">
+    <!-- ==== AD SLOT: LEADERBOARD (728 x 90) ====
+     Ganti seluruh isi div.ad-slot di bawah dengan snippet AdSense.
+     Contoh:
+       <ins class="adsbygoogle" style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="1234567890"></ins>
+       <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+-->
+<div class="ad-slot ad-leaderboard" data-ad-slot="leaderboard" aria-hidden="true">
+  <span class="ad-slot__label">Ad Slot &middot; Leaderboard</span>
+  <span class="ad-slot__size">728 &times; 90</span>
+</div>
+<!-- ==== /AD SLOT: LEADERBOARD ==== -->
+  </div>
+
+  <div class="mx-auto max-w-[1440px] px-4 sm:px-6 py-6 grid gap-6 lg:grid-cols-[250px_minmax(0,1fr)] xl:grid-cols-[250px_minmax(0,1fr)_300px] items-start">
+      <aside id="sidebar" class="hidden lg:block lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto pb-4">
+        <nav aria-label="Daftar tool">
+          <p class="nav-heading">Tersedia sekarang</p>
+          <ul class="space-y-0.5">
+          <li><a class="nav-link" href="/json-formatter.html">JSON Formatter &amp; Validator</a></li>
+          <li><a class="nav-link" href="/json-to-xml.html">JSON to XML</a></li>
+          <li><a class="nav-link" href="/sql-formatter.html">SQL Formatter</a></li>
+          <li><a class="nav-link" href="/base64-encoder.html">Base64 Encoder / Decoder</a></li>
+          </ul>
+          <p class="nav-heading mt-6">Segera hadir</p>
+          <details class="nav-group">
+            <summary>JSON<span class="nav-count">6</span></summary>
+            <ul>
+              <li class="nav-soon">JSON Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSON to CSV<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSON to YAML<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSON Escape / Unescape<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSON Diff<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSONPath Tester<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>XML<span class="nav-count">6</span></summary>
+            <ul>
+              <li class="nav-soon">XML Formatter<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XML Validator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XML Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XML to JSON<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XPath Tester<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XSLT Transformer<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>SQL &amp; Database<span class="nav-count">2</span></summary>
+            <ul>
+              <li class="nav-soon">SQL Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">SQL Escape / Unescape<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Web Code<span class="nav-count">7</span></summary>
+            <ul>
+              <li class="nav-soon">HTML Formatter<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">HTML Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">CSS Beautifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">CSS Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JavaScript Beautifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JavaScript Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">HTML Entity Encoder / Decoder<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Encoding<span class="nav-count">5</span></summary>
+            <ul>
+              <li class="nav-soon">Base64 to Image<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">URL Encoder / Decoder<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JWT Decoder<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Hex &harr; Text Converter<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Quoted-Printable Encoder / Decoder<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Hash &amp; Security<span class="nav-count">5</span></summary>
+            <ul>
+              <li class="nav-soon">MD5 Generator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">SHA-1 / SHA-256 / SHA-512 Generator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">HMAC Generator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">UUID Generator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Password Generator<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Data Converter<span class="nav-count">4</span></summary>
+            <ul>
+              <li class="nav-soon">CSV to JSON<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">CSV to XML<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">YAML to JSON<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Timestamp / Epoch Converter<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Text &amp; Utility<span class="nav-count">3</span></summary>
+            <ul>
+              <li class="nav-soon">Regex Tester<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Diff Checker<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Lorem Ipsum Generator<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+        </nav>
+      </aside>
+
+      <main id="main">
+        <section class="hero">
+          <p class="hero-eyebrow">4 tool siap pakai &middot; 38 menyusul</p>
+          <h1 class="hero-title">Formatter, validator, dan converter yang berjalan di browser Anda</h1>
+          <p class="hero-lead">Setiap tool adalah satu halaman HTML mandiri. Tidak ada data yang dikirim ke server, tidak ada antrean, tidak ada batas ukuran selain memori browser Anda sendiri.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="/json-formatter.html">Coba JSON Formatter</a>
+            <a class="btn btn-lg" href="/sql-formatter.html">SQL Formatter</a>
+          </div>
+          <div class="hero-search">
+            <label for="q" class="sr-only">Cari tool</label>
+            <input id="q" type="search" class="input input-search" placeholder="Cari tool… coba ketik &quot;base64&quot; atau &quot;csv&quot;" autocomplete="off">
+            <p id="qEmpty" class="hidden text-sm text-slate-500 mt-3">Tidak ada tool yang cocok.</p>
+          </div>
+          <nav class="chips" aria-label="Lompat ke kategori"><a class="chip" href="#cat-json">JSON</a><a class="chip" href="#cat-xml">XML</a><a class="chip" href="#cat-sql">SQL &amp; Database</a><a class="chip" href="#cat-web">Web Code</a><a class="chip" href="#cat-encoding">Encoding</a><a class="chip" href="#cat-hash">Hash &amp; Security</a><a class="chip" href="#cat-data">Data Converter</a><a class="chip" href="#cat-text">Text &amp; Utility</a></nav>
+        </section>
+
+        <section class="cat-section" id="cat-json">
+          <div class="cat-head">
+            <h2>JSON</h2>
+            <span class="cat-meta">8 tool</span>
+          </div>
+          <div class="card-grid">
+            <a class="tool-card-link" href="/json-formatter.html" data-name="json formatter &amp; validator">
+              <span class="badge badge-live">Live</span>
+              <h3>JSON Formatter &amp; Validator</h3>
+              <p>Format, minify, dan validasi JSON dengan pesan error baris &amp; kolom.</p>
+              <span class="card-cta">Buka tool &rarr;</span>
+            </a><div class="tool-card-link is-soon" data-name="json minifier">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JSON Minifier</h3>
+              <p>Kompres JSON jadi satu baris tanpa spasi.</p>
+            </div><a class="tool-card-link" href="/json-to-xml.html" data-name="json to xml">
+              <span class="badge badge-live">Live</span>
+              <h3>JSON to XML</h3>
+              <p>Konversi struktur JSON menjadi dokumen XML.</p>
+              <span class="card-cta">Buka tool &rarr;</span>
+            </a><div class="tool-card-link is-soon" data-name="json to csv">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JSON to CSV</h3>
+              <p>Ubah array of object jadi tabel CSV.</p>
+            </div><div class="tool-card-link is-soon" data-name="json to yaml">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JSON to YAML</h3>
+              <p>Konversi JSON ke YAML yang enak dibaca.</p>
+            </div><div class="tool-card-link is-soon" data-name="json escape / unescape">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JSON Escape / Unescape</h3>
+              <p>Escape string JSON untuk ditempel di kode.</p>
+            </div><div class="tool-card-link is-soon" data-name="json diff">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JSON Diff</h3>
+              <p>Bandingkan dua dokumen JSON secara struktural.</p>
+            </div><div class="tool-card-link is-soon" data-name="jsonpath tester">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JSONPath Tester</h3>
+              <p>Uji ekspresi JSONPath terhadap dokumen JSON.</p>
+            </div>
+          </div>
+        </section><section class="cat-section" id="cat-xml">
+          <div class="cat-head">
+            <h2>XML</h2>
+            <span class="cat-meta">6 tool</span>
+          </div>
+          <div class="card-grid">
+            <div class="tool-card-link is-soon" data-name="xml formatter">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>XML Formatter</h3>
+              <p>Rapikan indentasi dokumen XML.</p>
+            </div><div class="tool-card-link is-soon" data-name="xml validator">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>XML Validator</h3>
+              <p>Cek well-formedness dokumen XML.</p>
+            </div><div class="tool-card-link is-soon" data-name="xml minifier">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>XML Minifier</h3>
+              <p>Buang whitespace antar node XML.</p>
+            </div><div class="tool-card-link is-soon" data-name="xml to json">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>XML to JSON</h3>
+              <p>Konversi XML menjadi JSON.</p>
+            </div><div class="tool-card-link is-soon" data-name="xpath tester">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>XPath Tester</h3>
+              <p>Jalankan ekspresi XPath terhadap XML.</p>
+            </div><div class="tool-card-link is-soon" data-name="xslt transformer">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>XSLT Transformer</h3>
+              <p>Transformasi XML memakai stylesheet XSLT.</p>
+            </div>
+          </div>
+        </section><section class="cat-section" id="cat-sql">
+          <div class="cat-head">
+            <h2>SQL &amp; Database</h2>
+            <span class="cat-meta">3 tool</span>
+          </div>
+          <div class="card-grid">
+            <a class="tool-card-link" href="/sql-formatter.html" data-name="sql formatter">
+              <span class="badge badge-live">Live</span>
+              <h3>SQL Formatter</h3>
+              <p>Rapikan query SQL untuk 10+ dialek.</p>
+              <span class="card-cta">Buka tool &rarr;</span>
+            </a><div class="tool-card-link is-soon" data-name="sql minifier">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>SQL Minifier</h3>
+              <p>Padatkan query SQL jadi satu baris.</p>
+            </div><div class="tool-card-link is-soon" data-name="sql escape / unescape">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>SQL Escape / Unescape</h3>
+              <p>Escape literal string untuk query SQL.</p>
+            </div>
+          </div>
+        </section><section class="cat-section" id="cat-web">
+          <div class="cat-head">
+            <h2>Web Code</h2>
+            <span class="cat-meta">7 tool</span>
+          </div>
+          <div class="card-grid">
+            <div class="tool-card-link is-soon" data-name="html formatter">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>HTML Formatter</h3>
+              <p>Rapikan markup HTML dengan js-beautify.</p>
+            </div><div class="tool-card-link is-soon" data-name="html minifier">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>HTML Minifier</h3>
+              <p>Kompres HTML untuk produksi.</p>
+            </div><div class="tool-card-link is-soon" data-name="css beautifier">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>CSS Beautifier</h3>
+              <p>Rapikan stylesheet CSS.</p>
+            </div><div class="tool-card-link is-soon" data-name="css minifier">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>CSS Minifier</h3>
+              <p>Kompres CSS jadi satu baris.</p>
+            </div><div class="tool-card-link is-soon" data-name="javascript beautifier">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JavaScript Beautifier</h3>
+              <p>Rapikan dan indentasi kode JavaScript.</p>
+            </div><div class="tool-card-link is-soon" data-name="javascript minifier">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JavaScript Minifier</h3>
+              <p>Perkecil ukuran file JavaScript.</p>
+            </div><div class="tool-card-link is-soon" data-name="html entity encoder / decoder">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>HTML Entity Encoder / Decoder</h3>
+              <p>Ubah karakter khusus jadi entity HTML.</p>
+            </div>
+          </div>
+        </section><section class="cat-section" id="cat-encoding">
+          <div class="cat-head">
+            <h2>Encoding</h2>
+            <span class="cat-meta">6 tool</span>
+          </div>
+          <div class="card-grid">
+            <a class="tool-card-link" href="/base64-encoder.html" data-name="base64 encoder / decoder">
+              <span class="badge badge-live">Live</span>
+              <h3>Base64 Encoder / Decoder</h3>
+              <p>Encode dan decode Base64, aman untuk UTF-8 dan file biner.</p>
+              <span class="card-cta">Buka tool &rarr;</span>
+            </a><div class="tool-card-link is-soon" data-name="base64 to image">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>Base64 to Image</h3>
+              <p>Render data URI Base64 jadi gambar.</p>
+            </div><div class="tool-card-link is-soon" data-name="url encoder / decoder">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>URL Encoder / Decoder</h3>
+              <p>Percent-encoding untuk query string.</p>
+            </div><div class="tool-card-link is-soon" data-name="jwt decoder">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>JWT Decoder</h3>
+              <p>Bongkar header dan payload token JWT.</p>
+            </div><div class="tool-card-link is-soon" data-name="hex &harr; text converter">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>Hex &harr; Text Converter</h3>
+              <p>Konversi teks ke heksadesimal dan sebaliknya.</p>
+            </div><div class="tool-card-link is-soon" data-name="quoted-printable encoder / decoder">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>Quoted-Printable Encoder / Decoder</h3>
+              <p>Encoding untuk body email MIME.</p>
+            </div>
+          </div>
+        </section><section class="cat-section" id="cat-hash">
+          <div class="cat-head">
+            <h2>Hash &amp; Security</h2>
+            <span class="cat-meta">5 tool</span>
+          </div>
+          <div class="card-grid">
+            <div class="tool-card-link is-soon" data-name="md5 generator">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>MD5 Generator</h3>
+              <p>Hitung digest MD5 dari teks atau file.</p>
+            </div><div class="tool-card-link is-soon" data-name="sha-1 / sha-256 / sha-512 generator">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>SHA-1 / SHA-256 / SHA-512 Generator</h3>
+              <p>Hash SHA memakai Web Crypto API.</p>
+            </div><div class="tool-card-link is-soon" data-name="hmac generator">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>HMAC Generator</h3>
+              <p>Hitung HMAC dengan secret key.</p>
+            </div><div class="tool-card-link is-soon" data-name="uuid generator">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>UUID Generator</h3>
+              <p>Generate UUID v4 secara massal.</p>
+            </div><div class="tool-card-link is-soon" data-name="password generator">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>Password Generator</h3>
+              <p>Buat password acak yang kuat.</p>
+            </div>
+          </div>
+        </section><section class="cat-section" id="cat-data">
+          <div class="cat-head">
+            <h2>Data Converter</h2>
+            <span class="cat-meta">4 tool</span>
+          </div>
+          <div class="card-grid">
+            <div class="tool-card-link is-soon" data-name="csv to json">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>CSV to JSON</h3>
+              <p>Parse CSV jadi JSON dengan PapaParse.</p>
+            </div><div class="tool-card-link is-soon" data-name="csv to xml">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>CSV to XML</h3>
+              <p>Konversi tabel CSV menjadi XML.</p>
+            </div><div class="tool-card-link is-soon" data-name="yaml to json">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>YAML to JSON</h3>
+              <p>Konversi YAML ke JSON dengan js-yaml.</p>
+            </div><div class="tool-card-link is-soon" data-name="timestamp / epoch converter">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>Timestamp / Epoch Converter</h3>
+              <p>Konversi Unix timestamp ke tanggal.</p>
+            </div>
+          </div>
+        </section><section class="cat-section" id="cat-text">
+          <div class="cat-head">
+            <h2>Text &amp; Utility</h2>
+            <span class="cat-meta">3 tool</span>
+          </div>
+          <div class="card-grid">
+            <div class="tool-card-link is-soon" data-name="regex tester">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>Regex Tester</h3>
+              <p>Uji pola regular expression secara live.</p>
+            </div><div class="tool-card-link is-soon" data-name="diff checker">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>Diff Checker</h3>
+              <p>Bandingkan dua teks baris per baris.</p>
+            </div><div class="tool-card-link is-soon" data-name="lorem ipsum generator">
+              <span class="badge badge-soon-lg">Coming soon</span>
+              <h3>Lorem Ipsum Generator</h3>
+              <p>Buat teks placeholder untuk mockup.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="mt-8">
+          <!-- ==== AD SLOT: IN-CONTENT (336 x 280) ====
+     Ganti seluruh isi div.ad-slot di bawah dengan snippet AdSense.
+     Contoh:
+       <ins class="adsbygoogle" style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="1234567890"></ins>
+       <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+-->
+<div class="ad-slot ad-incontent" data-ad-slot="incontent" aria-hidden="true">
+  <span class="ad-slot__label">Ad Slot &middot; In-Content</span>
+  <span class="ad-slot__size">336 &times; 280</span>
+</div>
+<!-- ==== /AD SLOT: IN-CONTENT ==== -->
+        </div>
+
+        <section class="prose-block mt-10">
+          <h2>Kenapa tiap tool berupa halaman terpisah</h2>
+          <p>Situs ini sengaja dibangun tanpa framework single-page. Setiap tool adalah berkas HTML tersendiri yang dimuat dengan full page reload, bukan lewat routing client-side. Konsekuensinya sederhana tapi penting: setiap perpindahan tool menghasilkan satu pageview yang benar-benar tercatat oleh Google Analytics, Histats, dan skrip statistik lain, sekaligus satu kesempatan impression bagi unit iklan di halaman.</p>
+          <p>Pada aplikasi single-page, navigasi hanya menukar isi DOM tanpa memuat ulang dokumen, sehingga skrip penghitung yang dijalankan sekali saat halaman pertama dibuka tidak pernah berjalan lagi. Arsitektur multi-halaman menghindari seluruh kelas masalah tersebut tanpa perlu penanganan khusus.</p>
+          <p>Seluruh pemrosesan tetap berjalan di sisi klien memakai JavaScript murni, jadi tidak ada data pengguna yang dikirim ke server, dan halaman tetap bisa disajikan sebagai berkas statis dari shared hosting mana pun.</p>
+        </section>
+      </main>
+
+      <aside class="hidden xl:block xl:sticky xl:top-20">
+        <!-- ==== AD SLOT: SIDEBAR (300 x 600) ====
+     Ganti seluruh isi div.ad-slot di bawah dengan snippet AdSense.
+     Contoh:
+       <ins class="adsbygoogle" style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="1234567890"></ins>
+       <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+-->
+<div class="ad-slot ad-sidebar" data-ad-slot="sidebar" aria-hidden="true">
+  <span class="ad-slot__label">Ad Slot &middot; Sidebar</span>
+  <span class="ad-slot__size">300 &times; 600</span>
+</div>
+<!-- ==== /AD SLOT: SIDEBAR ==== -->
+      </aside>
+  </div>
+
+  <footer class="mt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 py-10">
+      <div class="site-footer grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div><h3>JSON</h3><ul><li><a href="/json-formatter.html">JSON Formatter &amp; Validator</a></li><li><span>JSON Minifier</span></li><li><a href="/json-to-xml.html">JSON to XML</a></li><li><span>JSON to CSV</span></li><li><span>JSON to YAML</span></li></ul></div><div><h3>XML</h3><ul><li><span>XML Formatter</span></li><li><span>XML Validator</span></li><li><span>XML Minifier</span></li><li><span>XML to JSON</span></li><li><span>XPath Tester</span></li></ul></div><div><h3>SQL &amp; Database</h3><ul><li><a href="/sql-formatter.html">SQL Formatter</a></li><li><span>SQL Minifier</span></li><li><span>SQL Escape / Unescape</span></li></ul></div><div><h3>Web Code</h3><ul><li><span>HTML Formatter</span></li><li><span>HTML Minifier</span></li><li><span>CSS Beautifier</span></li><li><span>CSS Minifier</span></li><li><span>JavaScript Beautifier</span></li></ul></div>
+      </div>
+      <p class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-500">
+        &copy; 2026 DevTools iambrilian Studio &mdash; demo. Semua pemrosesan berjalan di browser Anda; tidak ada data yang dikirim ke server.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON to XML Converter Online &mdash; Atribut, Array &amp; Null | DevTools iambrilian Studio</title>
+  <meta name="description" content="Konversi JSON menjadi XML well-formed dengan dukungan atribut, penamaan elemen array, dan nilai null. Berjalan sepenuhnya di browser.">
+  <link rel="canonical" href="https://devtools-formatter.vercel.app/json-to-xml.html">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DevTools iambrilian Studio">
+  <meta property="og:title" content="JSON to XML Converter Online &mdash; Atribut, Array &amp; Null | DevTools iambrilian Studio">
+  <meta property="og:description" content="Konversi JSON menjadi XML well-formed dengan dukungan atribut, penamaan elemen array, dan nilai null. Berjalan sepenuhnya di browser.">
+  <meta property="og:url" content="https://devtools-formatter.vercel.app/json-to-xml.html">
+  <meta property="og:image" content="https://devtools-formatter.vercel.app/assets/logo-512.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://devtools-formatter.vercel.app/assets/logo-512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo-192.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>(function(){try{var t=localStorage.getItem('dt-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}})();</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','ui-sans-serif','system-ui','-apple-system','Segoe UI','sans-serif'],mono:['JetBrains Mono','ui-monospace','SFMono-Regular','Menlo','monospace']}}}};</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Konverter JSON ke XML",
+      "description": "Konversi JSON menjadi XML well-formed dengan dukungan atribut, penamaan elemen array, dan nilai null. Berjalan sepenuhnya di browser.",
+      "url": "https://devtools-formatter.vercel.app/json-to-xml.html",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any (web browser)",
+      "browserRequirements": "Requires JavaScript",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "DevTools iambrilian Studio",
+        "url": "https://devtools-formatter.vercel.app/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Beranda",
+          "item": "https://devtools-formatter.vercel.app/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Konverter JSON ke XML",
+          "item": "https://devtools-formatter.vercel.app/json-to-xml.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Bagaimana array JSON diterjemahkan ke XML?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "XML tidak punya tipe array, jadi setiap elemen array ditulis sebagai elemen berulang. Anda bisa memilih apakah nama elemennya mengulang nama key induk, selalu memakai tag item, atau memakai bentuk tunggal dari nama key induk."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana cara membuat atribut XML dari JSON?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Beri awalan @ pada nama key, misalnya \"@id\": \"SO-4471\". Key seperti itu akan menjadi atribut pada elemen induknya, bukan elemen anak. Fitur ini bisa dimatikan lewat opsi di atas editor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apa yang terjadi pada nilai null?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nilai null dikeluarkan sebagai elemen kosong dengan atribut xsi:nil sama dengan true, sesuai konvensi XML Schema, dan namespace xsi ditambahkan otomatis pada elemen akar bila diperlukan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana kalau nama key mengandung spasi atau tanda baca?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nama elemen XML tidak boleh mengandung spasi dan tidak boleh diawali angka. Karakter yang tidak sah diganti dengan garis bawah, dan nama yang diawali angka diberi awalan garis bawah, sehingga output tetap well-formed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah hasilnya dijamin valid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hasilnya dijamin well-formed karena diverifikasi ulang dengan DOMParser browser setelah konversi. Validitas terhadap sebuah XSD tertentu adalah hal berbeda dan bergantung pada skema tujuan Anda."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script defer src="/assets/app.js"></script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 font-sans antialiased">
+  <a href="#main" class="skip-link">Lewati ke konten</a>
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 h-16 flex items-center gap-3">
+      <button id="navToggle" type="button" class="icon-btn lg:hidden" aria-label="Buka daftar tool" aria-expanded="false" aria-controls="sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <a href="/index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="/assets/logo.png" alt="Logo DevTools iambrilian Studio" width="34" height="34" class="brand-mark">
+        <span class="font-semibold tracking-tight text-[15px] whitespace-nowrap">DevTools <span class="text-indigo-600 dark:text-indigo-400">iambrilian</span> Studio</span>
+      </a>
+      <nav class="ml-auto hidden md:flex items-center gap-1 text-sm" aria-label="Navigasi utama">
+        <a class="top-link" href="/json-formatter.html">JSON</a>
+        <a class="top-link" href="/sql-formatter.html">SQL</a>
+        <a class="top-link" href="/base64-encoder.html">Base64</a>
+        <a class="top-link" href="/json-to-xml.html">Converter</a>
+      </nav>
+      <button id="themeToggle" type="button" class="icon-btn md:ml-2 ml-auto md:ml-2" aria-label="Ganti tema terang / gelap">
+        <svg class="dark:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="hidden dark:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mx-auto max-w-[1440px] px-4 sm:px-6 pt-5">
+    <!-- ==== AD SLOT: LEADERBOARD (728 x 90) ====
+     Ganti seluruh isi div.ad-slot di bawah dengan snippet AdSense.
+     Contoh:
+       <ins class="adsbygoogle" style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="1234567890"></ins>
+       <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+-->
+<div class="ad-slot ad-leaderboard" data-ad-slot="leaderboard" aria-hidden="true">
+  <span class="ad-slot__label">Ad Slot &middot; Leaderboard</span>
+  <span class="ad-slot__size">728 &times; 90</span>
+</div>
+<!-- ==== /AD SLOT: LEADERBOARD ==== -->
+  </div>
+
+  <div class="mx-auto max-w-[1440px] px-4 sm:px-6 py-6 grid gap-6 lg:grid-cols-[250px_minmax(0,1fr)] xl:grid-cols-[250px_minmax(0,1fr)_300px] items-start">
+      <aside id="sidebar" class="hidden lg:block lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto pb-4">
+        <nav aria-label="Daftar tool">
+          <p class="nav-heading">Tersedia sekarang</p>
+          <ul class="space-y-0.5">
+          <li><a class="nav-link" href="/json-formatter.html">JSON Formatter &amp; Validator</a></li>
+          <li><a class="nav-link nav-link--active" href="/json-to-xml.html" aria-current="page">JSON to XML</a></li>
+          <li><a class="nav-link" href="/sql-formatter.html">SQL Formatter</a></li>
+          <li><a class="nav-link" href="/base64-encoder.html">Base64 Encoder / Decoder</a></li>
+          </ul>
+          <p class="nav-heading mt-6">Segera hadir</p>
+          <details class="nav-group">
+            <summary>JSON<span class="nav-count">6</span></summary>
+            <ul>
+              <li class="nav-soon">JSON Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSON to CSV<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSON to YAML<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSON Escape / Unescape<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSON Diff<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JSONPath Tester<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>XML<span class="nav-count">6</span></summary>
+            <ul>
+              <li class="nav-soon">XML Formatter<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XML Validator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XML Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XML to JSON<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XPath Tester<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">XSLT Transformer<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>SQL &amp; Database<span class="nav-count">2</span></summary>
+            <ul>
+              <li class="nav-soon">SQL Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">SQL Escape / Unescape<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Web Code<span class="nav-count">7</span></summary>
+            <ul>
+              <li class="nav-soon">HTML Formatter<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">HTML Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">CSS Beautifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">CSS Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JavaScript Beautifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JavaScript Minifier<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">HTML Entity Encoder / Decoder<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Encoding<span class="nav-count">5</span></summary>
+            <ul>
+              <li class="nav-soon">Base64 to Image<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">URL Encoder / Decoder<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">JWT Decoder<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Hex &harr; Text Converter<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Quoted-Printable Encoder / Decoder<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Hash &amp; Security<span class="nav-count">5</span></summary>
+            <ul>
+              <li class="nav-soon">MD5 Generator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">SHA-1 / SHA-256 / SHA-512 Generator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">HMAC Generator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">UUID Generator<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Password Generator<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Data Converter<span class="nav-count">4</span></summary>
+            <ul>
+              <li class="nav-soon">CSV to JSON<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">CSV to XML<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">YAML to JSON<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Timestamp / Epoch Converter<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+          <details class="nav-group">
+            <summary>Text &amp; Utility<span class="nav-count">3</span></summary>
+            <ul>
+              <li class="nav-soon">Regex Tester<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Diff Checker<span class="badge-soon">soon</span></li>
+              <li class="nav-soon">Lorem Ipsum Generator<span class="badge-soon">soon</span></li>
+            </ul>
+          </details>
+        </nav>
+      </aside>
+
+      <main id="main">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/index.html">Beranda</a><span aria-hidden="true">/</span><span>Konverter JSON ke XML</span>
+        </nav>
+        <h1 class="page-title">Konverter JSON ke XML</h1>
+        <p class="page-lead">Ubah dokumen JSON menjadi XML yang well-formed, lengkap dengan atribut, elemen berulang, dan escaping yang benar.</p>
+
+        <section class="tool-card mt-6" aria-label="Area kerja Konverter JSON ke XML">
+          <div class="tool-toolbar">
+            <button type="button" id="btnFormat" class="btn btn-primary">Convert</button>
+            <button type="button" id="btnMinify" class="btn">Convert &amp; minify</button>
+            <span class="toolbar-sep" aria-hidden="true"></span>
+            <button type="button" id="btnUpload" class="btn btn-ghost">Upload file</button>
+            <button type="button" id="btnCopy" class="btn btn-ghost">Copy result</button>
+            <button type="button" id="btnDownload" class="btn btn-ghost">Download</button>
+            <button type="button" id="btnClear" class="btn btn-ghost">Clear</button>
+            <input type="file" id="fileInput" class="sr-only" tabindex="-1" aria-hidden="true">
+          </div>
+          <div class="tool-options">
+            <label class="opt"><span>Elemen akar</span>
+              <input id="optRoot" class="input" type="text" value="root" spellcheck="false" size="10">
+            </label>
+            <label class="opt"><span>Nama item array</span>
+              <select id="optArray" class="select">
+                <option value="parent" selected>Ulang nama key induk</option>
+                <option value="item">Selalu &lt;item&gt;</option>
+                <option value="singular">Bentuk tunggal key induk</option>
+              </select>
+            </label>
+            <label class="opt"><span>Indentasi</span>
+              <select id="optIndent" class="select">
+                <option value="2" selected>2 spasi</option>
+                <option value="4">4 spasi</option>
+                <option value="tab">Tab</option>
+              </select>
+            </label>
+            <label class="opt opt-check"><input type="checkbox" id="optDecl" checked> <span>Sertakan deklarasi XML</span></label>
+            <label class="opt opt-check"><input type="checkbox" id="optAttr" checked> <span>Key berawalan <code>@</code> jadi atribut</span></label>
+          </div>
+
+          <div class="tool-panels">
+            <section class="panel" aria-labelledby="in-h">
+              <div class="panel-head">
+                <h2 id="in-h" class="panel-title">JSON masukan</h2>
+                <span id="inMeta" class="panel-meta"></span>
+              </div>
+              <div class="panel-body"><textarea id="input" aria-label="JSON masukan"></textarea></div>
+            </section>
+            <section class="panel" aria-labelledby="out-h">
+              <div class="panel-head">
+                <h2 id="out-h" class="panel-title">XML hasil</h2>
+                <span id="outMeta" class="panel-meta"></span>
+              </div>
+              <div class="panel-body"><textarea id="output" aria-label="XML hasil"></textarea></div>
+            </section>
+          </div>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+        </section>
+
+        <div class="mt-6">
+          <!-- ==== AD SLOT: IN-CONTENT (336 x 280) ====
+     Ganti seluruh isi div.ad-slot di bawah dengan snippet AdSense.
+     Contoh:
+       <ins class="adsbygoogle" style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="1234567890"></ins>
+       <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+-->
+<div class="ad-slot ad-incontent" data-ad-slot="incontent" aria-hidden="true">
+  <span class="ad-slot__label">Ad Slot &middot; In-Content</span>
+  <span class="ad-slot__size">336 &times; 280</span>
+</div>
+<!-- ==== /AD SLOT: IN-CONTENT ==== -->
+        </div>
+
+        <section class="prose-block mt-10">
+          <h2>Tentang Konverter JSON ke XML</h2>
+          <p>JSON to XML mengubah dokumen JSON menjadi XML yang well-formed, lengkap dengan deklarasi, indentasi, dan escaping karakter khusus. Konversi ini sering dibutuhkan ketika API modern berbicara JSON sementara sistem lawas di sisi lain &mdash; SOAP, mesin ETL, atau layanan pemerintahan &mdash; hanya menerima XML.</p>
+          <p>Karena JSON tidak mengenal konsep atribut, tool ini memakai konvensi yang sudah umum dipakai: key yang diawali <code>@</code> menjadi atribut elemen induk, dan key <code>#text</code> menjadi isi teks elemen. Array diterjemahkan menjadi elemen berulang, dengan tiga pilihan penamaan agar hasilnya sesuai skema tujuan Anda.</p>
+          <p>Nilai <code>null</code> dikeluarkan sebagai elemen kosong bertanda <code>xsi:nil="true"</code> sesuai XML Schema, dan nama key yang tidak sah sebagai nama elemen XML disanitasi otomatis. Setiap hasil konversi langsung diuji ulang memakai <code>DOMParser</code> bawaan browser, sehingga Anda tahu output benar-benar well-formed sebelum dipakai.</p>
+        </section>
+
+      <section class="prose-block mt-10" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">Pertanyaan yang sering diajukan</h2>
+        <div class="mt-4 space-y-2">
+        <details class="faq-item">
+          <summary>Bagaimana array JSON diterjemahkan ke XML?</summary>
+          <div class="faq-answer"><p>XML tidak punya tipe array, jadi setiap elemen array ditulis sebagai elemen berulang. Anda bisa memilih apakah nama elemennya mengulang nama key induk, selalu memakai tag item, atau memakai bentuk tunggal dari nama key induk.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Bagaimana cara membuat atribut XML dari JSON?</summary>
+          <div class="faq-answer"><p>Beri awalan @ pada nama key, misalnya "@id": "SO-4471". Key seperti itu akan menjadi atribut pada elemen induknya, bukan elemen anak. Fitur ini bisa dimatikan lewat opsi di atas editor.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Apa yang terjadi pada nilai null?</summary>
+          <div class="faq-answer"><p>Nilai null dikeluarkan sebagai elemen kosong dengan atribut xsi:nil sama dengan true, sesuai konvensi XML Schema, dan namespace xsi ditambahkan otomatis pada elemen akar bila diperlukan.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Bagaimana kalau nama key mengandung spasi atau tanda baca?</summary>
+          <div class="faq-answer"><p>Nama elemen XML tidak boleh mengandung spasi dan tidak boleh diawali angka. Karakter yang tidak sah diganti dengan garis bawah, dan nama yang diawali angka diberi awalan garis bawah, sehingga output tetap well-formed.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Apakah hasilnya dijamin valid?</summary>
+          <div class="faq-answer"><p>Hasilnya dijamin well-formed karena diverifikasi ulang dengan DOMParser browser setelah konversi. Validitas terhadap sebuah XSD tertentu adalah hal berbeda dan bergantung pada skema tujuan Anda.</p></div>
+        </details>
+        </div>
+      </section>
+      </main>
+
+      <aside class="hidden xl:block xl:sticky xl:top-20">
+        <!-- ==== AD SLOT: SIDEBAR (300 x 600) ====
+     Ganti seluruh isi div.ad-slot di bawah dengan snippet AdSense.
+     Contoh:
+       <ins class="adsbygoogle" style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="1234567890"></ins>
+       <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+-->
+<div class="ad-slot ad-sidebar" data-ad-slot="sidebar" aria-hidden="true">
+  <span class="ad-slot__label">Ad Slot &middot; Sidebar</span>
+  <span class="ad-slot__size">300 &times; 600</span>
+</div>
+<!-- ==== /AD SLOT: SIDEBAR ==== -->
+      </aside>
+  </div>
+
+  <footer class="mt-16 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40">
+    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 py-10">
+      <div class="site-footer grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div><h3>JSON</h3><ul><li><a href="/json-formatter.html">JSON Formatter &amp; Validator</a></li><li><span>JSON Minifier</span></li><li><a href="/json-to-xml.html">JSON to XML</a></li><li><span>JSON to CSV</span></li><li><span>JSON to YAML</span></li></ul></div><div><h3>XML</h3><ul><li><span>XML Formatter</span></li><li><span>XML Validator</span></li><li><span>XML Minifier</span></li><li><span>XML to JSON</span></li><li><span>XPath Tester</span></li></ul></div><div><h3>SQL &amp; Database</h3><ul><li><a href="/sql-formatter.html">SQL Formatter</a></li><li><span>SQL Minifier</span></li><li><span>SQL Escape / Unescape</span></li></ul></div><div><h3>Web Code</h3><ul><li><span>HTML Formatter</span></li><li><span>HTML Minifier</span></li><li><span>CSS Beautifier</span></li><li><span>CSS Minifier</span></li><li><span>JavaScript Beautifier</span></li></ul></div>
+      </div>
+      <p class="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-500">
+        &copy; 2026 DevTools iambrilian Studio &mdash; demo. Semua pemrosesan berjalan di browser Anda; tidak ada data yang dikirim ke server.
+      </p>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var input = DT.editor('input', { mode: 'application/json' });
+      var output = DT.editor('output', { mode: 'application/xml', readOnly: true });
+      input.setValue('{\n  "@version": "1.0",\n  "order": {\n    "@id": "SO-4471",\n    "customer": "PT Sinar Abadi",\n    "shippedAt": null,\n    "items": [\n      { "@sku": "KB-100", "#text": "Keyboard mekanik" },\n      { "@sku": "MS-220", "#text": "Mouse nirkabel" }\n    ],\n    "total": 465000,\n    "express": true\n  }\n}');
+
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+      function escAttr(s) {
+        return esc(s).replace(/"/g, '&quot;');
+      }
+      function safeName(k) {
+        var n = String(k).replace(/^[@#]/, '').replace(/[^A-Za-z0-9_.\-]/g, '_');
+        if (!n || /^[^A-Za-z_]/.test(n)) n = '_' + n;
+        return n;
+      }
+      function singular(k) {
+        return /ies$/.test(k) ? k.slice(0, -3) + 'y' : /s$/.test(k) && !/ss$/.test(k) ? k.slice(0, -1) : k;
+      }
+
+      function build(value, name, pad, ind, opt) {
+        var nl = ind === '' ? '' : '\n';
+        if (value === null || value === undefined) return pad + '<' + name + ' xsi:nil="true"/>' + nl;
+        if (Array.isArray(value)) {
+          var child = opt.array === 'item' ? 'item' : opt.array === 'singular' ? safeName(singular(name)) : name;
+          if (!value.length) return pad + '<' + name + '/>' + nl;
+          return value.map(function (v) { return build(v, child, pad, ind, opt); }).join('');
+        }
+        if (typeof value === 'object') {
+          var attrs = '', text = null, inner = '';
+          Object.keys(value).forEach(function (k) {
+            var v = value[k];
+            if (opt.attr && k.charAt(0) === '@' && (v === null || typeof v !== 'object')) {
+              attrs += ' ' + safeName(k) + '="' + escAttr(v === null ? '' : v) + '"';
+            } else if (k === '#text') {
+              text = v;
+            } else {
+              inner += build(v, safeName(k), pad + ind, ind, opt);
+            }
+          });
+          if (text !== null && !inner) return pad + '<' + name + attrs + '>' + esc(text) + '</' + name + '>' + nl;
+          if (!inner && text === null) return pad + '<' + name + attrs + '/>' + nl;
+          if (text !== null) inner = pad + ind + esc(text) + nl + inner;
+          return pad + '<' + name + attrs + '>' + nl + inner + pad + '</' + name + '>' + nl;
+        }
+        return pad + '<' + name + '>' + esc(value) + '</' + name + '>' + nl;
+      }
+
+      function convert(compact) {
+        DT.clearErrorLine(input);
+        var text = input.getValue();
+        if (!text.trim()) { DT.status('Input masih kosong. Tempel dokumen JSON dulu.', 'warn'); return; }
+        var data;
+        try { data = JSON.parse(text); } catch (err) {
+          var e = DT.jsonError(text, err);
+          DT.markErrorLine(input, e.line);
+          DT.status(e.html, 'error', true);
+          return;
+        }
+        var iv = document.getElementById('optIndent').value;
+        var ind = compact ? '' : (iv === 'tab' ? '\t' : new Array(parseInt(iv, 10) + 1).join(' '));
+        var root = safeName(document.getElementById('optRoot').value || 'root');
+        var opt = {
+          array: document.getElementById('optArray').value,
+          attr: document.getElementById('optAttr').checked
+        };
+        var body = build(data, root, '', ind, opt);
+        var xml = (document.getElementById('optDecl').checked
+          ? '<?xml version="1.0" encoding="UTF-8"?>' + (compact ? '' : '\n') : '') + body;
+        if (/xsi:nil/.test(xml)) {
+          xml = xml.replace('<' + root, '<' + root + ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"');
+        }
+        xml = compact ? xml.trim() : xml.replace(/\n$/, '');
+        output.setValue(xml);
+        var err2 = new DOMParser().parseFromString(xml, 'application/xml').querySelector('parsererror');
+        document.getElementById('outMeta').textContent = DT.human(DT.bytes(xml));
+        if (err2) {
+          DT.status('XML berhasil dibuat, tapi parser browser menolaknya: ' + DT.esc(err2.textContent.slice(0, 160)) + '. Periksa nama key yang mengandung karakter tak lazim.', 'warn', true);
+        } else {
+          DT.status('Konversi berhasil · ' + (compact ? 'output dipadatkan' : 'output berindentasi') + ' · hasil lolos validasi well-formed DOMParser.', 'ok');
+        }
+      }
+
+      DT.on('btnFormat', function () { convert(false); });
+      DT.on('btnMinify', function () { convert(true); });
+      DT.wireCommon(input, output, 'converted.xml', 'application/xml');
+      DT.status('Siap. Tempel JSON lalu klik Convert.', 'idle');
+    });
+  </script>
+</body>
+</html>
