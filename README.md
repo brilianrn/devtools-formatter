@@ -44,6 +44,15 @@ Demo project oleh **[iambrilian](https://github.com/brilianrn)**
   </tr>
 </table>
 
+### Footer
+
+Peta tool per kategori, catatan privasi, dan tanda tangan penulis yang menautkan
+ke [iambrilian.vercel.app](https://iambrilian.vercel.app).
+
+<img src="docs/preview/footer-light.jpg" alt="Footer pada tema terang: empat kolom daftar tool, catatan privasi, dan pill Dibuat oleh iambrilian di kanan">
+
+<img src="docs/preview/footer-dark.jpg" alt="Footer yang sama pada tema gelap">
+
 ---
 
 ## Ringkasan
