@@ -5,4 +5,4 @@ Disallow: /assets/
 User-agent: Mediapartners-Google
 Allow: /
 
-Sitemap: https://devtools-formatter.vercel.app/sitemap.xml
+Sitemap: https://demo-devtools-iambrilian.vercel.app/sitemap.xml
